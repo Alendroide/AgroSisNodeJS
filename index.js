@@ -8,7 +8,9 @@ const app = express();
 
 //Routers
 import testRouter from './src/routers/test.router.js';
+import usuariosRouter from './src/routers/usuarios.router.js';
 app.use(testRouter);
+app.use(usuariosRouter);
 
 //404
 app.use((req,res)=>{
