@@ -63,3 +63,52 @@ export async function login(req,res){
         res.status(500).json({msg:"Internal server error"});
     }
 }
+
+export async function update(req,res){
+
+    const identificacion = parseInt(req.params.id);
+    const { ...updateFields } = req.body;
+
+    if (Object.keys(updateFields).length === 0) {
+        return res.status(400).json({ error: 'No fields provided to update' });
+    }
+
+    try{
+
+        const setClauses = [];
+        const values = [];
+
+
+        for (const key of Object.keys(updateFields)) {
+
+            if(key === 'identificacion'){
+                continue;
+            }
+
+            if(key === 'password'){
+                const passwordHash = await bcrypt.hash(updateFields[key],10);
+                setClauses.push('passwordHash = ?');
+                values.push(passwordHash);
+            }
+            else{
+                setClauses.push(`${key} = ?`);
+                values.push(updateFields[key]);
+            }
+        };
+
+        values.push(identificacion);
+
+        const sql = `UPDATE Usuarios SET ${setClauses.join(', ')} WHERE identificacion = ?`;
+
+        const [result] = await pool.query(sql, values);
+
+        if(result.affectedRows > 0){
+            return res.status(200).json({msg:"Usuario updated successfully"});
+        }
+        res.status(400).json({msg:"Error updating usuario"});
+    }
+    catch(error){
+        console.error(error);
+        res.status(500).json({msg:"Internal server error"});
+    }
+}
