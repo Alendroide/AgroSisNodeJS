@@ -1,5 +1,7 @@
 import pool from '../db.js';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 
 export async function getAll(req,res){
     try{
@@ -25,6 +27,36 @@ export async function create(req,res){
             return res.status(201).json({msg:"Usuario created successfully"});
         }
         res.status(400).json({msg:"Error creating usuario"});
+    }
+    catch(error){
+        console.error(error);
+        res.status(500).json({msg:"Internal server error"});
+    }
+}
+
+export async function login(req,res){
+    try{
+        const { correoElectronico, password } = req.body;
+        const sql = 'SELECT * FROM Usuarios WHERE correoElectronico = ?';
+
+        const [[user]] = await pool.query(sql,correoElectronico);
+        if(!user){
+            return res.status(404).json({msg:"Usuario not found"});
+        }
+
+        const verified = await bcrypt.compare(password,user.passwordHash);
+        if(!verified){
+            return res.status(400).json({msg:"Wrong password for usuario"});
+        }
+
+        const token = jwt.sign({
+            identificacion : user.identificacion,
+            nombre : `${user.nombre} ${user.apellidos}`,
+            correoElectronico : user.correoElectronico,
+            admin : user.admin
+        },process.env.SECRET_KEY);
+
+        res.status(200).json({token});
     }
     catch(error){
         console.error(error);
