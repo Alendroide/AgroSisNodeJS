@@ -2,6 +2,7 @@ import pool from '../db.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+dotenv.config();
 
 export async function getAll(req,res){
     try{

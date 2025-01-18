@@ -12,6 +12,7 @@ const verifyJWT = async(req,res,next) => {
         if(!verified){
             return res.status(401).json({msg:"Invalid token"});
         };
+        req.user = verified;
         next();
     }
     catch(error){
