@@ -12,9 +12,11 @@ app.use(express.urlencoded({ extended: false }));
 //Routers
 import testRouter from './src/routers/test.router.js';
 app.use(testRouter);
+import eras from './src/routers/eras.router.js'
 import lotes from './src/routers/lotes.router.js'
 
 //control eras
+app.use(eras)
 app.use(lotes)
 
 //404
