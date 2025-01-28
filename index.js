@@ -3,12 +3,19 @@ import express from 'express';
 import dotenv from 'dotenv';
 dotenv.config();
 
+
 //Inicializaciones
 const app = express();
+app.use(express.json()); 
+app.use(express.urlencoded({ extended: false })); 
 
 //Routers
 import testRouter from './src/routers/test.router.js';
 app.use(testRouter);
+import lotes from './src/routers/lotes.router.js'
+
+//control eras
+app.use(lotes)
 
 //404
 app.use((req,res)=>{
