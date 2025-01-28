@@ -29,8 +29,7 @@ export const RegistarEras = async (req, res) => {
         console.error(error);
         return res.status(500).json({ "message": "Error del sistema" });
     }
-};
-
+}
 export const ActualizarEras = async (req, res) => {
     try {
         const { fk_Lotes, tamX, tamY, posX, posY, estado } = req.body;

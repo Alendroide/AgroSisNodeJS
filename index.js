@@ -15,11 +15,13 @@ app.use(testRouter);
 import eras from './src/routers/eras.router.js'
 import lotes from './src/routers/lotes.router.js'
 import pHs from './src/routers/pHs.router.js'
+import humedadTerreno from './src/routers/humedadTerreno.router.js'
 
 //control eras
 app.use(eras)
 app.use(lotes)
 app.use(pHs)
+app.use(humedadTerreno)
 
 //404
 app.use((req,res)=>{
