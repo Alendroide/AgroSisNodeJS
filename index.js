@@ -14,10 +14,12 @@ import testRouter from './src/routers/test.router.js';
 app.use(testRouter);
 import eras from './src/routers/eras.router.js'
 import lotes from './src/routers/lotes.router.js'
+import pHs from './src/routers/pHs.router.js'
 
 //control eras
 app.use(eras)
 app.use(lotes)
+app.use(pHs)
 
 //404
 app.use((req,res)=>{
