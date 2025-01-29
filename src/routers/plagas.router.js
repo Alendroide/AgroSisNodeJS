@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { listarPlagas } from "../controllers/plagas.controller";
+import { listarPlagas } from "../controllers/plagas.controller.js";
 
 const rutaPlagas = Router();
 
