@@ -80,3 +80,18 @@ export const eliminarPlagas = async (req, resp) => {
     return resp.status(500).json({ message: "error en el sistema" });
   }
 };
+
+export const buscarPlaga = async (req, resp) => {
+  try {
+    const id = req.params.id;
+    const [result] = await pool.query(`select * from plagas where id=${id}`);
+    if (result.length > 0) {
+      return resp.status(200).json(result);
+    } else {
+      return resp.status(404).json({ message: "plaga no encontrados" });
+    }
+  } catch (error) {
+    console.error(error);
+    return resp.status(500).json({ message: "error en el sistema" });
+  }
+};
