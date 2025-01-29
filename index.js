@@ -10,8 +10,10 @@ app.use(express.json());
 //Routers
 import testRouter from "./src/routers/test.router.js";
 import rutaTipoPlaga from "./src/routers/tipoPlaga.router.js";
+import rutaPlagas from "./src/routers/plagas.router.js";
 app.use(testRouter);
 app.use(rutaTipoPlaga);
+app.use(rutaPlagas);
 
 //404
 app.use((req, res) => {
