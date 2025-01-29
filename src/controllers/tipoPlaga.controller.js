@@ -26,7 +26,7 @@ export const registrarTipoPlaga = async (req, resp) => {
     } else {
       return resp
         .status(400)
-        .json({ message: "el articulo no se pudo registrar" });
+        .json({ message: "el tipo de plaga no se pudo registrar" });
     }
   } catch (error) {
     console.error(error);
