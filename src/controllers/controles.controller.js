@@ -13,3 +13,28 @@ export const listarControles = async (req, resp) => {
     return resp.status(500).json({ message: "Error en el sistema" });
   }
 };
+
+export const registrarControles = async (req, resp) => {
+  try {
+    const { fk_Afecciones, fk_TiposControl, descripcion, fechaControl } =
+      req.body;
+    const sql = `INSERT INTO controles (fk_Afecciones, fk_TiposControl,descripcion,fechaControl) VALUES (?,?,?,?)`;
+    const [rows] = await pool.query(sql, [
+      fk_Afecciones,
+      fk_TiposControl,
+      descripcion,
+      fechaControl,
+    ]);
+
+    if (rows.affectedRows > 0) {
+      return resp.status(200).json({ message: "Tipo de control registrado" });
+    } else {
+      return resp
+        .status(400)
+        .json({ message: "No se pudo registrar el tipo de control" });
+    }
+  } catch (error) {
+    console.error(error);
+    return resp.status(500).json({ message: "Error en el sistema" });
+  }
+};
