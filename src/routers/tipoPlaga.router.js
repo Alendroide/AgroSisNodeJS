@@ -7,5 +7,5 @@ import {
 const ruta = Router();
 
 ruta.get("/tipoPlaga", listarTipoPlaga);
-ruta.post("tipoPlaga", registrarTipoPlaga);
+ruta.post("/tipoPlaga", registrarTipoPlaga);
 export default ruta;
