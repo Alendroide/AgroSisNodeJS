@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { listarControles } from "../controllers/controles.controller";
+import { listarControles } from "../controllers/controles.controller.js";
 
-const routerControles = Router();
+const rutaControles = Router();
 
 routerControles.get("/controles", listarControles);
 
-export default routerControles;
+export default rutaControles;
