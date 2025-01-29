@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { listarAfecciones } from "../controllers/afecciones.controller";
+import { listarAfecciones } from "../controllers/afecciones.controller.js";
 
-rutaAfecciones = Router();
+const rutaAfecciones = Router();
 rutaAfecciones.get("/afecciones", listarAfecciones);
 
 export default rutaAfecciones;
