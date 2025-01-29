@@ -20,8 +20,8 @@ export const registrarTipoPlaga = async (req, resp) => {
   try {
     const { nombre, descripcion, img } = req.body;
     const sql = `insert into tiposplaga (nombre,descripcion,img) values (?,?,?)`;
-    const [result] = await pool.query(sql, [nombre, descripcion, img]);
-    if (result.length > 0) {
+    const [rows] = await pool.query(sql, [nombre, descripcion, img]);
+    if (rows.affectedRows > 0) {
       return resp.status(200).json({ message: "tipo de plaga registrada" });
     } else {
       return resp
