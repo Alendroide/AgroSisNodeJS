@@ -9,5 +9,5 @@ const ruta = Router();
 
 ruta.get("/tipoPlaga", listarTipoPlaga);
 ruta.post("/tipoPlaga", registrarTipoPlaga);
-ruta.put("/tipoPlaga", actualizarTipoPlaga);
+ruta.put("/tipoPlaga/:id", actualizarTipoPlaga);
 export default ruta;
