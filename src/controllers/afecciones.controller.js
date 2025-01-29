@@ -13,3 +13,26 @@ export const listarAfecciones = async (req, resp) => {
     return resp.status(500).json({ message: "error en el sistema" });
   }
 };
+
+export const registrarAfecciones = async (req, resp) => {
+  try {
+    const { fk_Plantaciones, fk_Plagas, fechaEncuentro, estado } = req.body;
+    const sql = `insert into afecciones (fk_Plantaciones,fk_Plagas,fechaEncuentro,estado) values (?,?,?,?)`;
+    const [rows] = await pool.query(sql, [
+      fk_Plantaciones,
+      fk_Plagas,
+      fechaEncuentro,
+      estado,
+    ]);
+    if (rows.affectedRows > 0) {
+      return resp.status(200).json({ message: " afeccion registrada" });
+    } else {
+      return resp
+        .status(400)
+        .json({ message: " la nueva afeccion no pudo ser registrada" });
+    }
+  } catch (error) {
+    console.error(error);
+    return resp.status(500).json({ message: "error en el sistema" });
+  }
+};
