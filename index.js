@@ -11,9 +11,11 @@ app.use(express.json());
 import testRouter from "./src/routers/test.router.js";
 import rutaTipoPlaga from "./src/routers/tipoPlaga.router.js";
 import rutaPlagas from "./src/routers/plagas.router.js";
+import rutaAfecciones from "./src/routers/afecciones.router.js";
 app.use(testRouter);
 app.use(rutaTipoPlaga);
 app.use(rutaPlagas);
+app.use(rutaAfecciones);
 
 //404
 app.use((req, res) => {
