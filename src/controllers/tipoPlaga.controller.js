@@ -2,7 +2,7 @@ import pool from "../db.js";
 
 const listarTipoPlaga = async (req, resp) => {
   try {
-    const [result] = await mysql.query("select * from tiposplaga");
+    const [result] = await pool.query("select * from tiposplaga");
     if (result.length > 0) {
       return resp.status(200).json(result);
     } else {
