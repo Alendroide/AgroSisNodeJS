@@ -57,7 +57,7 @@ export const actualizarTipoPlaga = async (req, resp) => {
 export const eliminarTipoPlaga = async (req, resp) => {
   try {
     const id = req.params.id;
-    const sql = `delete tiposplaga where id=${id}`;
+    const sql = `delete from tiposplaga where id=${id}`;
 
     const [rows] = await pool.query(sql);
     if (rows.affectedRows > 0) {
