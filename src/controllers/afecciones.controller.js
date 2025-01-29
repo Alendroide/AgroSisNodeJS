@@ -61,3 +61,22 @@ export const actualizarAfecciones = async (req, resp) => {
     return resp.status(500).json({ message: "error en el sistema" });
   }
 };
+
+export const eliminarAfecciones = async (req, resp) => {
+  try {
+    const id = req.params.id;
+    const sql = `delete from afecciones where id=${id}`;
+
+    const [rows] = await pool.query(sql);
+    if (rows.affectedRows > 0) {
+      return resp.status(200).json({ message: "tipo de afeccion eliminada" });
+    } else {
+      return resp
+        .status(400)
+        .json({ message: "no fue posible eliminar la afeccion" });
+    }
+  } catch (error) {
+    console.error(error);
+    return resp.status(500).json({ message: "error en el sistema" });
+  }
+};
