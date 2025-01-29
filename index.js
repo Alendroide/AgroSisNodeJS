@@ -5,6 +5,7 @@ dotenv.config();
 
 //Inicializaciones
 const app = express();
+app.use(express.json());
 
 //Routers
 import testRouter from "./src/routers/test.router.js";
