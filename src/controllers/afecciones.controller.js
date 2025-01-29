@@ -36,3 +36,28 @@ export const registrarAfecciones = async (req, resp) => {
     return resp.status(500).json({ message: "error en el sistema" });
   }
 };
+
+export const actualizarAfecciones = async (req, resp) => {
+  try {
+    const id = req.params.id;
+    const { fk_Plantaciones, fk_Plagas, fechaEncuentro, estado } = req.body;
+    const sql = `update afecciones set fk_Plantaciones=?,fk_Plagas=?,fechaEncuentro=?,estado=? where id=${id}`;
+
+    const [rows] = await pool.query(sql, [
+      fk_Plantaciones,
+      fk_Plagas,
+      fechaEncuentro,
+      estado,
+    ]);
+    if (rows.affectedRows > 0) {
+      return resp.status(200).json({ message: "afeccion actualizada" });
+    } else {
+      return resp
+        .status(400)
+        .json({ message: "no fue posible actualizar esta afeccion" });
+    }
+  } catch (error) {
+    console.error(error);
+    return resp.status(500).json({ message: "error en el sistema" });
+  }
+};
