@@ -1,6 +1,6 @@
 import pool from "../db.js";
 
-export const listarPlaga = async (req, resp) => {
+export const listarPlagas = async (req, resp) => {
   try {
     const [result] = await pool.query("select * from plagas");
     if (result.length > 0) {
