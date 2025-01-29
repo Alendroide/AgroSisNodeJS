@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   actualizarTipoPlaga,
+  buscarTipoPlaga,
   eliminarTipoPlaga,
   listarTipoPlaga,
   registrarTipoPlaga,
@@ -12,4 +13,5 @@ ruta.get("/tipoPlaga", listarTipoPlaga);
 ruta.post("/tipoPlaga", registrarTipoPlaga);
 ruta.put("/tipoPlaga/:id", actualizarTipoPlaga);
 ruta.delete("/tipoPlaga/:id", eliminarTipoPlaga);
+ruta.get("/tipoPlaga/:id", buscarTipoPlaga);
 export default ruta;
