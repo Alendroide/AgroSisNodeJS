@@ -38,3 +38,31 @@ export const registrarControles = async (req, resp) => {
     return resp.status(500).json({ message: "Error en el sistema" });
   }
 };
+
+export const actualizarControles = async (req, resp) => {
+  try {
+    const id = req.params.id;
+    const { fk_Afecciones, fk_TiposControl, descripcion, fechaControl } =
+      req.body;
+    const sql = `UPDATE tiposcontrol SET fk_Afecciones=?, fk_TiposControl=?, descripcion=?,fechaControl=?
+     WHERE id=${id}`;
+
+    const [rows] = await pool.query(sql, [
+      fk_Afecciones,
+      fk_TiposControl,
+      descripcion,
+      fechaControl,
+    ]);
+
+    if (rows.affectedRows > 0) {
+      return resp.status(200).json({ message: "control actualizado" });
+    } else {
+      return resp
+        .status(400)
+        .json({ message: "No se pudo actualizar el control" });
+    }
+  } catch (error) {
+    console.error(error);
+    return resp.status(500).json({ message: "Error en el sistema" });
+  }
+};
