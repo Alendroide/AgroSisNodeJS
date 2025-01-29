@@ -33,3 +33,22 @@ export const registrarTipoPlaga = async (req, resp) => {
     return resp.status(500).json({ message: "error en el sistema" });
   }
 };
+
+export const actualizarTipoPlaga = async (req, resp) => {
+  try {
+    const id = req.params.id;
+    const { nombre, descripcion, img } = req.body;
+    const sql = `update tiposplaga set nombre=?,descripcion=?,img=? where id=${id}`;
+    const [rows] = await pool.query(sql, [nombre, descripcion, img]);
+    if (rows.affectedRows > 1) {
+      return resp.status(200).json({ message: "tipo de plaga actualizada" });
+    } else {
+      return resp
+        .status(400)
+        .json({ message: "no fue posible actualizar el tipo de plaga" });
+    }
+  } catch (error) {
+    console.error(error);
+    return resp.status(500).json({ message: "error en el sistema" });
+  }
+};
