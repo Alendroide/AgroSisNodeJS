@@ -53,3 +53,22 @@ export const actualizarTipoPlaga = async (req, resp) => {
     return resp.status(500).json({ message: "error en el sistema" });
   }
 };
+
+export const eliminarTipoPlaga = async (req, resp) => {
+  try {
+    const id = req.params.id;
+    const sql = `delete tiposplaga where id=${id}`;
+
+    const [rows] = await pool.query(sql);
+    if (rows.affectedRows > 0) {
+      return resp.status(200).json({ message: "tipo de plaga eliminada" });
+    } else {
+      return resp
+        .status(400)
+        .json({ message: "no fue posible eliminar el tipo de plaga" });
+    }
+  } catch (error) {
+    console.error(error);
+    return resp.status(500).json({ message: "error en el sistema" });
+  }
+};
