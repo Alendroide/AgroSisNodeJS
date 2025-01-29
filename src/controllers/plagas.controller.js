@@ -43,13 +43,18 @@ export const actualizarPlagas = async (req, resp) => {
     const { fk_TiposPlaga, nombre, descripcion, img } = req.body;
     const sql = `update plagas set fk_TiposPlaga=?,nombre=?,descripcion=?,img=? where id=${id}`;
 
-    const [rows] = await pool.query(sql, [nombre, descripcion, img]);
+    const [rows] = await pool.query(sql, [
+      fk_TiposPlaga,
+      nombre,
+      descripcion,
+      img,
+    ]);
     if (rows.affectedRows > 0) {
-      return resp.status(200).json({ message: "tipo de plaga actualizada" });
+      return resp.status(200).json({ message: "plaga actualizada" });
     } else {
       return resp
         .status(400)
-        .json({ message: "no fue posible actualizar el tipo de plaga" });
+        .json({ message: "no fue posible actualizar esta plaga" });
     }
   } catch (error) {
     console.error(error);
