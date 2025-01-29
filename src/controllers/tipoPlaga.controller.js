@@ -1,6 +1,6 @@
 import pool from "../db.js";
 
-export default listarTipoPlaga = async (req, resp) => {
+const listarTipoPlaga = async (req, resp) => {
   try {
     const [result] = await mysql.query("select * from tiposplaga");
     if (result.length > 0) {
@@ -15,3 +15,5 @@ export default listarTipoPlaga = async (req, resp) => {
     return resp.status(500).json({ message: "error en el sistema" });
   }
 };
+
+export default listarTipoPlaga;
