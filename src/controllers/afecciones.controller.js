@@ -80,3 +80,20 @@ export const eliminarAfecciones = async (req, resp) => {
     return resp.status(500).json({ message: "error en el sistema" });
   }
 };
+
+export const buscarAfecciones = async (req, resp) => {
+  try {
+    const id = req.params.id;
+    const [result] = await pool.query(
+      `select * from afecciones where id=${id}`
+    );
+    if (result.length > 0) {
+      return resp.status(200).json(result);
+    } else {
+      return resp.status(404).json({ message: "afeccion no encontrada" });
+    }
+  } catch (error) {
+    console.error(error);
+    return resp.status(500).json({ message: "error en el sistema" });
+  }
+};
