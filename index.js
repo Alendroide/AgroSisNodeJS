@@ -13,11 +13,14 @@ import rutaTipoPlaga from "./src/routers/tipoPlaga.router.js";
 import rutaPlagas from "./src/routers/plagas.router.js";
 import rutaAfecciones from "./src/routers/afecciones.router.js";
 import rutaTiposControl from "./src/routers/tiposControl.router.js";
+import rutaControles from "./src/routers/controles.router.js";
 app.use(testRouter);
 app.use(rutaTipoPlaga);
 app.use(rutaPlagas);
 app.use(rutaAfecciones);
 app.use(rutaTiposControl);
+app.use(rutaControles);
+
 //404
 app.use((req, res) => {
   res.status(404).json({ msg: "404 - Not Found" });
