@@ -9,6 +9,6 @@ const rutaControles = Router();
 
 rutaControles.get("/controles", listarControles);
 rutaControles.post("/controles", registrarControles);
-rutaControles.put("/controles", actualizarControles);
+rutaControles.put("/controles/:id", actualizarControles);
 
 export default rutaControles;
