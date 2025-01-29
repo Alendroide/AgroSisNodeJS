@@ -1,6 +1,6 @@
 import pool from "../db.js";
 
-const listarTipoPlaga = async (req, resp) => {
+export const listarTipoPlaga = async (req, resp) => {
   try {
     const [result] = await pool.query("select * from tiposplaga");
     if (result.length > 0) {
@@ -33,5 +33,3 @@ export const registrarTipoPlaga = async (req, resp) => {
     return resp.status(500).json({ message: "error en el sistema" });
   }
 };
-
-export default listarTipoPlaga;

@@ -1,5 +1,6 @@
 import { Router } from "express";
-import listarTipoPlaga, {
+import {
+  listarTipoPlaga,
   registrarTipoPlaga,
 } from "../controllers/tipoPlaga.controller.js";
 
