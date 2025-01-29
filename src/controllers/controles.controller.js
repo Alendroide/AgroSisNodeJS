@@ -44,7 +44,7 @@ export const actualizarControles = async (req, resp) => {
     const id = req.params.id;
     const { fk_Afecciones, fk_TiposControl, descripcion, fechaControl } =
       req.body;
-    const sql = `UPDATE tiposcontrol SET fk_Afecciones=?, fk_TiposControl=?, descripcion=?,fechaControl=?
+    const sql = `UPDATE controles SET fk_Afecciones=?, fk_TiposControl=?, descripcion=?,fechaControl=?
      WHERE id=${id}`;
 
     const [rows] = await pool.query(sql, [
