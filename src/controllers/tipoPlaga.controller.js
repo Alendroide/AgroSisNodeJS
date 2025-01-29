@@ -39,8 +39,9 @@ export const actualizarTipoPlaga = async (req, resp) => {
     const id = req.params.id;
     const { nombre, descripcion, img } = req.body;
     const sql = `update tiposplaga set nombre=?,descripcion=?,img=? where id=${id}`;
+
     const [rows] = await pool.query(sql, [nombre, descripcion, img]);
-    if (rows.affectedRows > 1) {
+    if (rows.affectedRows > 0) {
       return resp.status(200).json({ message: "tipo de plaga actualizada" });
     } else {
       return resp
