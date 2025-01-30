@@ -15,6 +15,7 @@ import rutaAfecciones from "./src/routers/afecciones.router.js";
 import rutaTiposControl from "./src/routers/tiposControl.router.js";
 import rutaControles from "./src/routers/controles.router.js";
 import rutaProductosControl from "./src/routers/productosControl.router.js";
+import rutaUsoProductoControl from "./src/routers/usoProductoControl.router.js";
 app.use(testRouter);
 app.use(rutaTipoPlaga);
 app.use(rutaPlagas);
@@ -22,6 +23,7 @@ app.use(rutaAfecciones);
 app.use(rutaTiposControl);
 app.use(rutaControles);
 app.use(rutaProductosControl);
+app.use(rutaUsoProductoControl);
 
 //404
 app.use((req, res) => {
