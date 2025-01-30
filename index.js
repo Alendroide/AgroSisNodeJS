@@ -17,6 +17,7 @@ import lotes from './src/routers/lotes.router.js'
 import pHs from './src/routers/pHs.router.js'
 import humedadTerreno from './src/routers/humedadTerreno.router.js'
 import cultivos from './src/routers/cultivos.router.js'
+import plantaciones from './src/routers/plantaciones.router.js'
 
 //control eras
 app.use(eras)
@@ -24,6 +25,7 @@ app.use(lotes)
 app.use(pHs)
 app.use(humedadTerreno)
 app.use(cultivos)
+app.use(plantaciones)
 
 //404
 app.use((req,res)=>{
