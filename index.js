@@ -14,12 +14,14 @@ import rutaPlagas from "./src/routers/plagas.router.js";
 import rutaAfecciones from "./src/routers/afecciones.router.js";
 import rutaTiposControl from "./src/routers/tiposControl.router.js";
 import rutaControles from "./src/routers/controles.router.js";
+import rutaProductosControl from "./src/routers/productosControl.controller.js";
 app.use(testRouter);
 app.use(rutaTipoPlaga);
 app.use(rutaPlagas);
 app.use(rutaAfecciones);
 app.use(rutaTiposControl);
 app.use(rutaControles);
+app.use(rutaProductosControl);
 
 //404
 app.use((req, res) => {
