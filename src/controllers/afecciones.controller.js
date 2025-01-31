@@ -37,8 +37,18 @@ export const listarAfecciones = async (req, resp) => {
             unidades: afeccion.unCultivo,
           },
         },
+        fk_era: {
+          id: afeccion.id_era,
+          posX: afeccion.posXera,
+          posY: afeccion.posYera,
+          fk_lote: {
+            id: afeccion.id_lote,
+            posX: afeccion.posXlote,
+            posY: afeccion.posYlote,
+          },
+        },
       }));
-      return resp.status(200).json(result);
+      return resp.status(200).json(afecciones);
     } else {
       return resp.status(404).json({ message: "afecciones no encontradas" });
     }
