@@ -4,13 +4,15 @@ export const listarAfecciones = async (req, resp) => {
   try {
     const sql = `select a.id, a.fechaEncuentro, a. estado, a.fk_plagas,
     p.nombre as nombre_plaga, p.fk_TiposPlaga as idTipoPlaga, tp.nombre as tipo_plaga,
+    pl.id as id_plantaciones,
     c.id as id_cultivo, c.nombre as nombre_cultivo, c.unidades as unCultivo,
-    pl.id as id_plantaciones
+    er.id as id_era, er.posX as posXera, er.posY as posYera
     from afecciones a
     join plagas p on a.fk_Plagas = p.id
     join tiposPlaga tp on p.fk_TiposPlaga = tp.id
     join plantaciones pl on fk_Plantaciones = pl.id
-    join cultivos c on fk_Cultivos = c.id`;
+    join cultivos c on fk_Cultivos = c.id
+    join eras er on fk_Eras = er.id`;
     const [result] = await pool.query(sql);
     if (result.length > 0) {
       const afecciones = result.map((afeccion) => ({
@@ -34,7 +36,7 @@ export const listarAfecciones = async (req, resp) => {
           },
         },
       }));
-      return resp.status(200).json(afecciones);
+      return resp.status(200).json(result);
     } else {
       return resp.status(404).json({ message: "afecciones no encontradas" });
     }
