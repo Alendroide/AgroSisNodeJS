@@ -2,14 +2,28 @@ import pool from "../db.js";
 
 export const listarAfecciones = async (req, resp) => {
   try {
-    const sql = `select a.id, a.fk_plagas, p.nombre as nombre_plaga, p.fk_TiposPlaga, tp.nombre as tipo_plaga
+    const sql = `select a.id, a.fechaEncuentro, a. estado, a.fk_plagas, p.nombre as nombre_plaga, p.fk_TiposPlaga as idTipoPlaga, tp.nombre as tipo_plaga
+    A
     from afecciones a
     join plagas p on a.fk_Plagas = p.id
     join tiposPlaga tp on p.fk_TiposPlaga = tp.id`;
 
     const [result] = await pool.query(sql);
     if (result.length > 0) {
-      return resp.status(200).json(result);
+      const afecciones = result.map((afeccion) => ({
+        id: afeccion.id,
+        fechaEncuentro: afeccion.fechaEncuentro,
+        estado: afeccion.estado,
+        fk_Plagas: {
+          idPlaga: afeccion.id,
+          nombre: afeccion.nombre_plaga,
+          fk_tipo_Plaga: {
+            id_Tipo_Plaga: afeccion.idTipoPlaga,
+            nombre: afeccion.tipo_plaga,
+          },
+        },
+      }));
+      return resp.status(200).json(afecciones);
     } else {
       return resp.status(404).json({ message: "afecciones no encontradas" });
     }
