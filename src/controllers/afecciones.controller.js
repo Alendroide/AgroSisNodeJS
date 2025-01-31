@@ -3,7 +3,7 @@ import pool from "../db.js";
 export const listarAfecciones = async (req, resp) => {
   try {
     const sql = `select a.id, a.fechaEncuentro, a. estado, a.fk_plagas, p.nombre as nombre_plaga, p.fk_TiposPlaga as idTipoPlaga, tp.nombre as tipo_plaga
-    A
+    
     from afecciones a
     join plagas p on a.fk_Plagas = p.id
     join tiposPlaga tp on p.fk_TiposPlaga = tp.id`;
