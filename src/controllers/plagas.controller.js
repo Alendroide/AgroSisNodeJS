@@ -97,7 +97,9 @@ export const eliminarPlagas = async (req, resp) => {
 export const buscarPlaga = async (req, resp) => {
   try {
     const id = req.params.id;
-    const [result] = await pool.query(`select * from plagas where id=${id}`);
+    const [result] =
+      await pool.query(`select p.nombre, p.descripcion, p.img, p.fk_TiposPlaga as id_tipo_plaga, tp.nombre as tipo_plaga, tp.descripcion as descipcion_tipo_plaga, tp.img as imagen_tipo_plaga
+       from plagas p join tiposplaga tp on p.fk_TiposPlaga = tp.id where p.id=${id}`);
     if (result.length > 0) {
       return resp.status(200).json(result);
     } else {
