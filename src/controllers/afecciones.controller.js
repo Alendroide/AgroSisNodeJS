@@ -2,12 +2,12 @@ import pool from "../db.js";
 
 export const listarAfecciones = async (req, resp) => {
   try {
-    const [result] = await pool.query(
-      `select a.id, a.fk_plagas, p.nombre as nombre_plaga, p.fk_TiposPlaga, tp.nombre as tipo_plaga
-     from afecciones a
-     join plagas p on a.fk_Plagas = p.id
-     join tiposPlaga tp on p.fk_TiposPlaga = tp.id`
-    );
+    const sql = `select a.id, a.fk_plagas, p.nombre as nombre_plaga, p.fk_TiposPlaga, tp.nombre as tipo_plaga
+    from afecciones a
+    join plagas p on a.fk_Plagas = p.id
+    join tiposPlaga tp on p.fk_TiposPlaga = tp.id`;
+
+    const [result] = await pool.query(sql);
     if (result.length > 0) {
       return resp.status(200).json(result);
     } else {
