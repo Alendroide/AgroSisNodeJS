@@ -101,7 +101,18 @@ export const buscarPlaga = async (req, resp) => {
       await pool.query(`select p.nombre, p.descripcion, p.img, p.fk_TiposPlaga as id_tipo_plaga, tp.nombre as tipo_plaga, tp.descripcion as descipcion_tipo_plaga, tp.img as imagen_tipo_plaga
        from plagas p join tiposplaga tp on p.fk_TiposPlaga = tp.id where p.id=${id}`);
     if (result.length > 0) {
-      return resp.status(200).json(result);
+      const plagas = result.map((plaga) => ({
+        nombre: plaga.nombre,
+        descripcion: plaga.descripcion,
+        img: plaga.img,
+        fk_TiposPlaga: {
+          id: plaga.id_tipo_plaga,
+          nombre: plaga.tipo_plaga,
+          descripcion: plaga.descripcion_tipo_plaga,
+          img: plaga.imagen_tipo_plaga,
+        },
+      }));
+      return resp.status(200).json(plagas);
     } else {
       return resp.status(404).json({ message: "plaga no encontrados" });
     }
