@@ -24,10 +24,6 @@ export const listarAfecciones = async (req, resp) => {
         fk_Plagas: {
           idPlaga: afeccion.id,
           nombre: afeccion.nombre_plaga,
-          fk_tipo_Plaga: {
-            id_Tipo_Plaga: afeccion.idTipoPlaga,
-            nombre: afeccion.tipo_plaga,
-          },
         },
         fk_Plantaciones: {
           id: afeccion.id_plantaciones,
@@ -152,10 +148,6 @@ export const buscarAfecciones = async (req, resp) => {
         fk_Plagas: {
           idPlaga: afeccion.id,
           nombre: afeccion.nombre_plaga,
-          fk_tipo_Plaga: {
-            id_Tipo_Plaga: afeccion.idTipoPlaga,
-            nombre: afeccion.tipo_plaga,
-          },
         },
         fk_Plantaciones: {
           id: afeccion.id_plantaciones,
