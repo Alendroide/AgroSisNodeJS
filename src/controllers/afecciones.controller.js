@@ -36,15 +36,15 @@ export const listarAfecciones = async (req, resp) => {
             nombre: afeccion.nombre_cultivo,
             unidades: afeccion.unCultivo,
           },
-        },
-        fk_era: {
-          id: afeccion.id_era,
-          posX: afeccion.posXera,
-          posY: afeccion.posYera,
-          fk_lote: {
-            id: afeccion.id_lote,
-            posX: afeccion.posXlote,
-            posY: afeccion.posYlote,
+          fk_era: {
+            id: afeccion.id_era,
+            posX: afeccion.posXera,
+            posY: afeccion.posYera,
+            fk_lote: {
+              id: afeccion.id_lote,
+              posX: afeccion.posXlote,
+              posY: afeccion.posYlote,
+            },
           },
         },
       }));
@@ -164,15 +164,15 @@ export const buscarAfecciones = async (req, resp) => {
             nombre: afeccion.nombre_cultivo,
             unidades: afeccion.unCultivo,
           },
-        },
-        fk_era: {
-          id: afeccion.id_era,
-          posX: afeccion.posXera,
-          posY: afeccion.posYera,
-          fk_lote: {
-            id: afeccion.id_lote,
-            posX: afeccion.posXlote,
-            posY: afeccion.posYlote,
+          fk_era: {
+            id: afeccion.id_era,
+            posX: afeccion.posXera,
+            posY: afeccion.posYera,
+            fk_lote: {
+              id: afeccion.id_lote,
+              posX: afeccion.posXlote,
+              posY: afeccion.posYlote,
+            },
           },
         },
       }));
