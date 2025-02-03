@@ -145,7 +145,38 @@ export const buscarAfecciones = async (req, resp) => {
 
     const [result] = await pool.query(sql);
     if (result.length > 0) {
-      return resp.status(200).json(result);
+      const afecciones = result.map((afeccion) => ({
+        id: afeccion.id,
+        fechaEncuentro: afeccion.fechaEncuentro,
+        estado: afeccion.estado,
+        fk_Plagas: {
+          idPlaga: afeccion.id,
+          nombre: afeccion.nombre_plaga,
+          fk_tipo_Plaga: {
+            id_Tipo_Plaga: afeccion.idTipoPlaga,
+            nombre: afeccion.tipo_plaga,
+          },
+        },
+        fk_Plantaciones: {
+          id: afeccion.id_plantaciones,
+          fk_cultivo: {
+            id_cultivo: afeccion.id_cultivo,
+            nombre: afeccion.nombre_cultivo,
+            unidades: afeccion.unCultivo,
+          },
+        },
+        fk_era: {
+          id: afeccion.id_era,
+          posX: afeccion.posXera,
+          posY: afeccion.posYera,
+          fk_lote: {
+            id: afeccion.id_lote,
+            posX: afeccion.posXlote,
+            posY: afeccion.posYlote,
+          },
+        },
+      }));
+      return resp.status(200).json(afecciones);
     } else {
       return resp.status(404).json({ message: "afeccion no encontrada" });
     }
