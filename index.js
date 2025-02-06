@@ -1,6 +1,6 @@
 //Importaciones
-import express from 'express';
-import dotenv from 'dotenv';
+import express from "express";
+import dotenv from "dotenv";
 dotenv.config();
 
 
@@ -10,7 +10,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false })); 
 
 //Routers
-import testRouter from './src/routers/test.router.js';
+import testRouter from "./src/routers/test.router.js";
+import rutaTipoPlaga from "./src/routers/tipoPlaga.router.js";
+import rutaPlagas from "./src/routers/plagas.router.js";
+import rutaAfecciones from "./src/routers/afecciones.router.js";
+import rutaTiposControl from "./src/routers/tiposControl.router.js";
+import rutaControles from "./src/routers/controles.router.js";
+import rutaProductosControl from "./src/routers/productosControl.router.js";
+import rutaUsoProductoControl from "./src/routers/usoProductoControl.router.js";
 import usuariosRouter from './src/routers/usuarios.router.js';
 import pasantesRouter from './src/routers/pasantes.router.js';
 import evapotranspiraciones from './src/routers/evapotranspiraciones.router.js';
@@ -41,13 +48,20 @@ app.use(iluminaciones)
 app.use(precipitaciones)
 app.use(temperaturas)
 app.use(velocidadViento)
+app.use(rutaTipoPlaga);
+app.use(rutaPlagas);
+app.use(rutaAfecciones);
+app.use(rutaTiposControl);
+app.use(rutaControles);
+app.use(rutaProductosControl);
+app.use(rutaUsoProductoControl);
 
 //404
-app.use((req,res)=>{
-    res.status(404).json({msg:"404 - Not Found"});
+app.use((req, res) => {
+  res.status(404).json({ msg: "404 - Not Found" });
 });
 
 //Arranque del servidor
-app.listen(process.env.PORT,()=>{
-    console.log("Server running on port: ",process.env.PORT);
+app.listen(process.env.PORT, () => {
+  console.log("Server running on port: ", process.env.PORT);
 });
