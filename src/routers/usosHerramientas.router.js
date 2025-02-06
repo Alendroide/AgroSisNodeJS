@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { createUsosHerramientas, getAllUsosHerramientas } from '../controllers/usosHerramientas.controller';
+import { createUsosHerramientas, getAllUsosHerramientas } from '../controllers/usosHerramientas.controller.js';
 
 const usosHerramientas = Router();
 
