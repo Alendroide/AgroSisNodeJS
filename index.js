@@ -7,10 +7,14 @@ dotenv.config();
 //Inicializaciones
 const app = express();
 app.use(express.json()); 
-app.use(express.urlencoded({ extended: false })); 
+app.use(express.urlencoded({ extended: false }));
+app.set('view engine', 'ejs');
+app.set('views', './src/views');
+app.use(express.static('./src/views/public'));
+
 
 //Routers
-import testRouter from "./src/routers/test.router.js";
+import docs from "./src/routers/docs.router.js";
 import rutaTipoPlaga from "./src/routers/tipoPlaga.router.js";
 import rutaPlagas from "./src/routers/plagas.router.js";
 import rutaAfecciones from "./src/routers/afecciones.router.js";
@@ -44,7 +48,7 @@ import usosHerramientas from './src/routers/usosHerramientas.router.js';
 import usosProductos from './src/routers/usosProductos.js';
 import actividades from './src/routers/actividades.router.js';
 
-app.use(testRouter);
+app.use(docs);
 app.use(usosHerramientas);
 app.use(usosProductos);
 app.use(insumos);
