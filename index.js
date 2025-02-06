@@ -26,7 +26,21 @@ import iluminaciones from './src/routers/iluminaciones.router.js';
 import precipitaciones from './src/routers/precipitaciones.router.js';
 import velocidadViento from './src/routers/velocidadViento.router.js';
 
+import cosechas from './src/routers/cosechas.router.js';
+import desechos from './src/routers/desechos.router.js';
+import especies from './src/routers/especies.router.js';
+import semilleros from './src/routers/semilleros.router.js';
+import tiposDesecho from './src/routers/tiposDesecho.router.js';
+import tiposEspecie from './src/routers/tiposEspecie.router.js';
+import ventas from './src/routers/ventas.router.js';
 app.use(testRouter);
+app.use(cosechas)
+app.use(desechos)
+app.use(especies)
+app.use(semilleros)
+app.use(tiposDesecho)
+app.use(tiposEspecie)
+app.use(ventas)
 app.use(usuariosRouter);
 app.use(pasantesRouter);
 import eras from './src/routers/eras.router.js'
