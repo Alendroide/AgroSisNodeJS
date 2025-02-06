@@ -36,6 +36,7 @@ export const getAllUsosProductos = async(req,res) => {
 }
 export const updateUsosProductos = async(req,res) => {
     try{
+        const id = req.params.id;
         const {fk_Insumos,fk_Actividades,cantidadProducto}=req.body
         const sql = `UPDATE usosproductos SET fk_Insumos=?,fk_Actividades=?,cantidadProducto=? WHERE id=${id}`
         const [rows] = await pool.query(sql,[fk_Insumos,fk_Actividades,cantidadProducto])

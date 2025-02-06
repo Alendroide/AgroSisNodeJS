@@ -25,7 +25,6 @@ import temperaturas from './src/routers/temperaturas.router.js';
 import iluminaciones from './src/routers/iluminaciones.router.js';
 import precipitaciones from './src/routers/precipitaciones.router.js';
 import velocidadViento from './src/routers/velocidadViento.router.js';
-
 import cosechas from './src/routers/cosechas.router.js';
 import desechos from './src/routers/desechos.router.js';
 import especies from './src/routers/especies.router.js';
@@ -33,7 +32,24 @@ import semilleros from './src/routers/semilleros.router.js';
 import tiposDesecho from './src/routers/tiposDesecho.router.js';
 import tiposEspecie from './src/routers/tiposEspecie.router.js';
 import ventas from './src/routers/ventas.router.js';
+import eras from './src/routers/eras.router.js'
+import lotes from './src/routers/lotes.router.js'
+import pHs from './src/routers/pHs.router.js'
+import humedadTerreno from './src/routers/humedadTerreno.router.js'
+import cultivos from './src/routers/cultivos.router.js'
+import plantaciones from './src/routers/plantaciones.router.js'
+import herramientas from './src/routers/herramientas.router.js'
+import insumos from './src/routers/insumos.router.js';
+import usosHerramientas from './src/routers/usosHerramientas.router.js';
+import usosProductos from './src/routers/usosProductos.js';
+import actividades from './src/routers/actividades.router.js';
+
 app.use(testRouter);
+app.use(usosHerramientas);
+app.use(usosProductos);
+app.use(insumos);
+app.use(actividades);
+app.use(herramientas);
 app.use(cosechas)
 app.use(desechos)
 app.use(especies)
@@ -43,14 +59,6 @@ app.use(tiposEspecie)
 app.use(ventas)
 app.use(usuariosRouter);
 app.use(pasantesRouter);
-import eras from './src/routers/eras.router.js'
-import lotes from './src/routers/lotes.router.js'
-import pHs from './src/routers/pHs.router.js'
-import humedadTerreno from './src/routers/humedadTerreno.router.js'
-import cultivos from './src/routers/cultivos.router.js'
-import plantaciones from './src/routers/plantaciones.router.js'
-
-//control eras
 app.use(eras)
 app.use(lotes)
 app.use(pHs)
