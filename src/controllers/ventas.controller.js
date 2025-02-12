@@ -8,7 +8,7 @@ export const getAllVentas = async (req,res) => {
             return res.status(200).json(rows)
         }
         else{
-            return res.status(402).json({msg : "No se encontraron datos de ventas."})
+            return res.status(404).json({msg : "No se encontraron datos de ventas."})
         }
     }
     catch(error){
@@ -40,7 +40,7 @@ export const updateVentas = async (req,res) => {
     try{
         const id =req.params.id
         const {fk_Cosechas,precioUnitario,fecha}=req.body
-        const sql = `UPDATE semilleros SET fk_Cosechas=?,precioUnitario=?,fecha=? WHERE id=${id}`
+        const sql = `UPDATE ventas SET fk_Cosechas=?,precioUnitario=?,fecha=? WHERE id=${id}`
         const [rows] = await pool.query(sql,[fk_Cosechas,precioUnitario,fecha])
         if (rows.affectedRows > 0){
             return res.status(200).json({msg : "La venta fue actualizada exitosamente"})
