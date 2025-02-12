@@ -4,6 +4,6 @@ import { createHerramientas, getAllHerramientas, updateHerramientas } from "../c
 const herramientas = Router()
 herramientas.get('/herramientas',getAllHerramientas)
 herramientas.post('/herramientas',createHerramientas)
-herramientas.put('/herramientas',updateHerramientas)
+herramientas.put('/herramientas/:id',updateHerramientas)
 
 export default herramientas;

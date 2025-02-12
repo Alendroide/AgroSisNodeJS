@@ -4,6 +4,6 @@ import { createActividad, getAllActividad, updateActividad } from "../controller
 const actividades = Router()
 actividades.get('/actividad',getAllActividad)
 actividades.post('/actividad',createActividad)
-actividades.put('/actividad',updateActividad)
+actividades.put('/actividad/:id',updateActividad)
 
 export default actividades;
