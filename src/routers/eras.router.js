@@ -15,7 +15,7 @@ router.get("/eras/:id",verifyJWT, BuscarEras)
 router.post("/eras",verifyJWT, RegistarEras)
 router.put("/eras/:id",verifyJWT, ActualizarEras)
 router.delete("/eras/:id",verifyJWT, EliminarEras)
-router.get("/eras/reporte/:id", ReporteErasPorLote)
-router.get("/eras/reporte/fecha/:fecha", ReporteErasPorFecha)
+router.get("/eras/reporte/:id",verifyJWT, ReporteErasPorLote)
+router.get("/eras/reporte/fecha/:fecha",verifyJWT, ReporteErasPorFecha)
 
 export default router
