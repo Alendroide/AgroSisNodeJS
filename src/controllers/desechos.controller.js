@@ -8,7 +8,7 @@ export const getAllDesechos = async (req,res) => {
             return res.status(200).json(rows)
         }
         else{
-            return res.status(402).json({msg : "No se encontraron datos de desechos."})
+            return res.status(404).json({msg : "No se encontraron datos de desechos."})
         }
     }
     catch(error){
