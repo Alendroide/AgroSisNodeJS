@@ -10,7 +10,7 @@ export const createEvapotranspiraciones = async (req,res) => {
         } 
     
         else{
-            return res.status(402).json({msg : "Error al recolectar la evapotranspiracion"})
+            return res.status(400).json({msg : "Error al recolectar la evapotranspiracion"})
         }
 
     }
@@ -28,7 +28,7 @@ export const getAllEvapotranspiraciones = async (req,res) => {
             return res.status(200).json({rows})
         }
         else{
-            return res.status(400).json({msg : "No se encontraron evapotranspiraciones registradas en la base de datos"})
+            return res.status(404).json({msg : "No se encontraron evapotranspiraciones registradas en la base de datos"})
         }
     }
     catch(error){

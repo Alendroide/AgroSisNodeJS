@@ -10,7 +10,7 @@ export const createTemperaturas = async (req,res) => {
         } 
     
         else{
-            return res.status(402).json({msg : "Error al recolectar los datos de las Temperaturas"})
+            return res.status(400).json({msg : "Error al recolectar los datos de las Temperaturas"})
         }
 
     }
@@ -28,7 +28,7 @@ export const getAllTemperaturas = async (req,res) => {
             return res.status(200).json({rows})
         }
         else{
-            return res.status(400).json({msg : "No se encontraron temperaturas registradas en la base de datos"})
+            return res.status(404).json({msg : "No se encontraron temperaturas registradas en la base de datos"})
         }
     }
     catch(error){
