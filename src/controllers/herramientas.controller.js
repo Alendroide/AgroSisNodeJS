@@ -26,7 +26,7 @@ export const getAllHerramientas = async(req,res) => {
             return res.status(200).json({rows})
         }
         else{
-            return res.status(404).json({msg : "No se encontraron actividades"})
+            return res.status(404).json({msg : "No se encontraron herramientas"})
         }
     }
     catch(error){
