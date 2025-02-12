@@ -77,3 +77,36 @@ export const BuscarEras = async (req, res) => {
         return res.status(500).json({ "message": "Error del sistema" });
     }
 }
+
+//REPORTES DE HISTORIAL DE LAS ERAS
+export const ReporteErasPorLote = async (req, res) => {
+    try {
+        const id = req.params.id
+        const sql = `SELECT * FROM eras WHERE fk_Lotes = ?`;
+        const [result] = await pool.query(sql, [id]);
+        if (result.length > 0) {
+            return res.status(200).json(result);
+        } else {
+            return res.status(404).json({ "message": "No hay eras registradas para este lote" });
+        }
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ "message": "Error del sistema" });
+    }
+}
+
+export const ReporteErasPorFecha = async (req, res) => {
+    try {
+        const { fecha } = req.query;
+        const sql = `SELECT * FROM eras WHERE DATE(fecha) = ?`;
+        const [result] = await pool.query(sql, [fecha]);
+        if (result.length > 0) {
+            return res.status(200).json(result);
+        } else {
+            return res.status(404).json({ "message": "No hay eras registradas en esta fecha" });
+        }
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ "message": "Error del sistema" });
+    }
+}
