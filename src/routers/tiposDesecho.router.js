@@ -4,6 +4,6 @@ import { createTiposDesecho, getAllTiposDesecho, updateTiposDesecho } from "../c
 const tiposDesecho = Router()
 tiposDesecho.get("/tiposDesecho",getAllTiposDesecho)
 tiposDesecho.post("/tiposDesecho",createTiposDesecho)
-tiposDesecho.put("/tiposDesecho",updateTiposDesecho)
+tiposDesecho.put("/tiposDesecho/:id",updateTiposDesecho)
 
 export default tiposDesecho;

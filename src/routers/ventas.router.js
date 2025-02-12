@@ -4,6 +4,6 @@ import { createVentas, getAllVentas, updateVentas } from "../controllers/ventas.
 const ventas = Router()
 ventas.get("/ventas",getAllVentas)
 ventas.post("/ventas",createVentas)
-ventas.put("/ventas",updateVentas)
+ventas.put("/ventas/:id",updateVentas)
 
 export default ventas;

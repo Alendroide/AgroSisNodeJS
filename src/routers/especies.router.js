@@ -4,6 +4,6 @@ import { createEspecies, getAllEspecies, updateEspecies } from "../controllers/e
 const especies = Router()
 especies.get("/especies",getAllEspecies)
 especies.post("/especies",createEspecies)
-especies.put("/especies",updateEspecies)
+especies.put("/especies/:id",updateEspecies)
 
 export default especies;

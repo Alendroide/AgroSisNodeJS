@@ -4,6 +4,6 @@ import { createSemilleros, getAllSemilleros, updateSemillero } from "../controll
 const semilleros = Router()
 semilleros.get("/semilleros",getAllSemilleros)
 semilleros.post("/semilleros",createSemilleros)
-semilleros.put("/semilleros",updateSemillero)
+semilleros.put("/semilleros/:id",updateSemillero)
 
 export default semilleros;

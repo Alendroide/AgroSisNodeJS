@@ -4,6 +4,6 @@ import { createCosechas, getAllCosechas, updateCosechas } from "../controllers/c
 const cosechas = Router()
 cosechas.get("/cosechas",getAllCosechas)
 cosechas.post("/cosechas",createCosechas)
-cosechas.put("/cosechas",updateCosechas)
+cosechas.put("/cosechas/:id",updateCosechas)
 
 export default cosechas;

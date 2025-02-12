@@ -4,6 +4,6 @@ import { createTiposEspecie, getAllTiposEspecie, updateTiposEspecie } from "../c
 const tiposEspecie = Router()
 tiposEspecie.get("/tiposEspecie",getAllTiposEspecie)
 tiposEspecie.post("/tiposEspecie",createTiposEspecie)
-tiposEspecie.put("/tiposEspecie",updateTiposEspecie)
+tiposEspecie.put("/tiposEspecie/:id",updateTiposEspecie)
 
 export default tiposEspecie;

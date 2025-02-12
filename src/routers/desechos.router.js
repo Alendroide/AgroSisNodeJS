@@ -4,6 +4,6 @@ import { getAllDesechos, createDesechos, updateDesechos } from "../controllers/d
 const desechos = Router()
 desechos.get("/desechos",getAllDesechos)
 desechos.post("/desechos",createDesechos)
-desechos.put("/desechos",updateDesechos)
+desechos.put("/desechos/:id",updateDesechos)
 
 export default desechos;
