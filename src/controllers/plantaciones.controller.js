@@ -12,14 +12,22 @@ export const ListarPlantaciones = async (req, res) => {
 }
 export const RegistrarPlantaciones = async (req, res) => {
     try {
-        const {fk_Cultivos, fk_Eras} = req.body
-        const sql = `INSERT INTO plantaciones (fk_Cultivos, fk_Eras) VALUES (?,?,)`
-        const [rows] = await pool.query(sql, [fk_Cultivos, fk_Eras])
+        const { fk_Cultivos, fk_Eras } = req.body;
+
+        if (!fk_Cultivos || !fk_Eras) {
+            return res.status(400).json({ message: "Todos los campos son obligatorios" });
+        }
+
+        const sql = `INSERT INTO plantaciones (fk_Cultivos, fk_Eras) VALUES (?,?)`;
+        const [rows] = await pool.query(sql, [fk_Cultivos, fk_Eras]);
+
+        return res.status(201).json({ message: "Plantación registrada correctamente" });
     } catch (error) {
         console.error(error);
-        return res.status(500).json({ "message": "Error al registrar la plantación" });
+        return res.status(500).json({ message: "Error al registrar la plantación" });
     }
-}
+};
+
 export const ActualizarPlantaciones = async (req, res) => {
     try {
         const {fk_Cultivos, fk_Eras} = req.body

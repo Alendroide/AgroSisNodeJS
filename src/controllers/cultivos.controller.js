@@ -62,7 +62,6 @@ export const BuscarCultivo = async (req, res) => {
         return res.status(500).json({ "message": "Error al buscar el cultivo" });
     }
 }
-
 export const ListarCultivosPorEspecie = async (req, res) => {
     try {
         const fk_Especies = req.params.id
