@@ -5,22 +5,24 @@ import {
   listarUsoProductoControl,
   registrarUsoProductosControl,
 } from "../controllers/usoProductoControl.controller.js";
+import verifyJWT from '../middlewares/verifyJWT.middleware.js';
+
 
 const rutaUsoProductoControl = Router();
 
-rutaUsoProductoControl.get("/usoProductoControl", listarUsoProductoControl);
+rutaUsoProductoControl.get("/usoProductoControl",verifyJWT, listarUsoProductoControl);
 rutaUsoProductoControl.post(
-  "/usoProductoControl",
+  "/usoProductoControl",verifyJWT,
   registrarUsoProductosControl
 );
 rutaUsoProductoControl.put(
-  "/usoProductoControl/:id",
+  "/usoProductoControl/:id",verifyJWT,
   actualizarUsoProductoControl
 );
 rutaUsoProductoControl.delete(
-  "/usoProductoControl/:id",
+  "/usoProductoControl/:id",verifyJWT,
   eliminarUsoProductoControl
 );
-rutaUsoProductoControl.get("/usoProductoControl/:id", listarUsoProductoControl);
+rutaUsoProductoControl.get("/usoProductoControl/:id", verifyJWT, listarUsoProductoControl);
 
 export default rutaUsoProductoControl;

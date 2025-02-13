@@ -6,13 +6,14 @@ import {
   listarTiposControl,
   registrarTipoControl,
 } from "../controllers/tiposControl.controller.js";
+import verifyJWT from '../middlewares/verifyJWT.middleware.js';
 
 const rutaTiposControl = Router();
 
-rutaTiposControl.get("/tiposcontrol", listarTiposControl);
-rutaTiposControl.post("/tiposcontrol", registrarTipoControl);
-rutaTiposControl.put("/tiposcontrol/:id", actualizarTipoControl);
-rutaTiposControl.delete("/tiposcontrol/:id", eliminarTipoControl);
-rutaTiposControl.get("/tiposcontrol/:id", buscarTipoControl);
+rutaTiposControl.get("/tiposcontrol", verifyJWT, listarTiposControl);
+rutaTiposControl.post("/tiposcontrol", verifyJWT, registrarTipoControl);
+rutaTiposControl.put("/tiposcontrol/:id", verifyJWT, actualizarTipoControl);
+rutaTiposControl.delete("/tiposcontrol/:id",verifyJWT,  eliminarTipoControl);
+rutaTiposControl.get("/tiposcontrol/:id", verifyJWT, buscarTipoControl);
 
 export default rutaTiposControl;
