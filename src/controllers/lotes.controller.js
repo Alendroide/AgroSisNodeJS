@@ -91,72 +91,53 @@ export const BuscarLotes = async (req, res) => {
     }
 }
 //BUSQUEDAS
- export const ListarLotesPorDimensiones = async (req, res) => {
+export const ListarLotesPorUbicacion = async (req, res) => {
     try {
-        const tamX = req.params.tamX
-        const tamY = req.params.tamY
-        const sql = `SELECT * FROM lotes WHERE tamX =? AND tamY =?`
-        const [result] = await pool.query(sql, [tamX, tamY])
-        if (result.length > 0) {
-            return res.status(200).json(result);
-        } else {
-            return res.status(404).json({ message: "No hay lotes con esas dimensiones" });
+        const { posX, posY } = req.params;
+
+        if (!posX || !posY || isNaN(posX) || isNaN(posY)) {
+            return res.status(400).json({ message: "Posiciones inválidas" });
         }
-        
-    } catch (error) {
-        console.error(error);
-        return res.status(500).json({ message: "Error del sistema" });
-    }
-}
- export const ListarLotesPorUbicacion = async (req, res) => {
-    try {
-        const posX = req.params.posX
-        const posY = req.params.posY
-        const sql = `SELECT * FROM lotes WHERE posX =? AND posY =?`
-        const [result] = await pool.query(sql, [posX, posY])
+
+        const sql = `SELECT * FROM lotes WHERE posX = ? AND posY = ?`;
+        const [result] = await pool.query(sql, [parseFloat(posX), parseFloat(posY)]);
+
         if (result.length > 0) {
             return res.status(200).json(result);
         } else {
             return res.status(404).json({ message: "No hay lotes en esa ubicación" });
         }
-        
+
     } catch (error) {
         console.error(error);
         return res.status(500).json({ message: "Error del sistema" });
     }
 }
- export const ListarLotesPorEstado = async (req, res) => {
+export const ListarLotesPorEstado = async (req, res) => {
     try {
         const estado = req.params.estado
-        const sql = `SELECT * FROM lotes WHERE estado =?`
-        const [result] = await pool.query(sql, [estado])
-        if (result.length > 0) {
-            return res.status(200).json(result);
-        } else {
-            return res.status(404).json({ message: "No hay lotes en ese estado" });
+
+        const estadoInt = parseInt(estado, 10)
+
+        if (isNaN(estadoInt) || (estadoInt !== 0 && estadoInt !== 1)) {
+            return res.status(400).json({ message: "El estado debe ser 0 o 1" })
         }
-        
+
+        const sql = `SELECT * FROM lotes WHERE estado = ?`
+        const [result] = await pool.query(sql, [estadoInt])
+
+        if (result.length > 0) {
+            return res.status(200).json(result)
+        } else {
+            return res.status(404).json({ message: "No hay lotes en ese estado" })
+        }
     } catch (error) {
-        console.error(error);
-        return res.status(500).json({ message: "Error del sistema" });
+        console.error("Error en la consulta:", error)
+        return res.status(500).json({ message: "Error del sistema" })
     }
 }
+
 //REPORTES
- export const GenerarReporteLotes = async (req, res) => {
-    try {
-        const sql = `SELECT * FROM lotes`
-        const [result] = await pool.query(sql)
-        if (result.length > 0) {
-            return res.status(200).json(result);
-        } else {
-            return res.status(404).json({ message: "No hay lotes registrados" });
-        }
-        
-    } catch (error) {
-        console.error(error);
-        return res.status(500).json({ message: "Error del sistema" });
-    }
-}
  export const GenerarReporteLotesPorDimensiones = async (req, res) => {
     try {
         const tamX = req.params.tamX
@@ -167,39 +148,6 @@ export const BuscarLotes = async (req, res) => {
             return res.status(200).json(result);
         } else {
             return res.status(404).json({ message: "No hay lotes con esas dimensiones" });
-        }
-        
-    } catch (error) {
-        console.error(error);
-        return res.status(500).json({ message: "Error del sistema" });
-    }
-}
- export const GenerarReporteLotesPorUbicacion = async (req, res) => {
-    try {
-        const posX = req.params.posX
-        const posY = req.params.posY
-        const sql = `SELECT * FROM lotes WHERE posX =? AND posY =?`
-        const [result] = await pool.query(sql, [posX, posY])
-        if (result.length > 0) {
-            return res.status(200).json(result);
-        } else {
-            return res.status(404).json({ message: "No hay lotes en esa ubicación" });
-        }
-        
-    } catch (error) {
-        console.error(error);
-        return res.status(500).json({ message: "Error del sistema" });
-    }
-}
- export const GenerarReporteLotesPorEstado = async (req, res) => {
-    try {
-        const estado = req.params.estado
-        const sql = `SELECT * FROM lotes WHERE estado =?`
-        const [result] = await pool.query(sql, [estado])
-        if (result.length > 0) {
-            return res.status(200).json(result);
-        } else {
-            return res.status(404).json({ message: "No hay lotes en ese estado" });
         }
         
     } catch (error) {

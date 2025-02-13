@@ -8,9 +8,7 @@ import { ListarPlantaciones,
         ListarPlantacionesPorEra,
         ListarPlantacionesPorCultivo,
         ListarPlantacionesPorCultivoYEra,
-        ReportePlantacionesPorEra,
-        ReportePlantacionesPorCultivo,
-        ReportePlantacionesPorCultivoYEra } from "../controllers/plantaciones.controller.js"
+        } from "../controllers/plantaciones.controller.js"
 import verifyJWT from '../middlewares/verifyJWT.middleware.js';
 
 const router = Router()
@@ -21,13 +19,10 @@ router.post("/plantaciones",verifyJWT, RegistrarPlantaciones)
 router.put("/plantaciones/:id",verifyJWT, ActualizarPlantaciones)
 router.delete("/plantaciones/:id",verifyJWT, EliminarPlantaciones)
 
-router.get("/plantaciones/era/:era",verifyJWT, ListarPlantacionesPorEra)
-router.get("/plantaciones/cultivo/:cultivo",verifyJWT, ListarPlantacionesPorCultivo)
-router.get("/plantaciones/:era/:cultivo",verifyJWT, ListarPlantacionesPorCultivoYEra)
-router.get("/plantaciones/reporte/:era/:cultivo/",verifyJWT, ListarPlantacionesPorEraYCultivo)
-router.get("/plantaciones/reporte/:era",verifyJWT, ReportePlantacionesPorEra)
-router.get("/plantaciones/reporte/:cultivo",verifyJWT, ReportePlantacionesPorCultivo)
-router.get("/plantaciones/reporte/:cultivo/:era",verifyJWT, ReportePlantacionesPorCultivoYEra)
+router.get("/plantaciones/era/:fk_Eras",verifyJWT, ListarPlantacionesPorEra)
+router.get("/plantaciones/cultivo/:fk_Cultivos",verifyJWT, ListarPlantacionesPorCultivo)
+router.get("/plantaciones/:fk_Eras/:fk_Cultivos",verifyJWT, ListarPlantacionesPorCultivoYEra)
+router.get("/plantaciones/reporte/:fk_Eras/:fk_Cultivos/",verifyJWT, ListarPlantacionesPorEraYCultivo)
 
 
 

@@ -26,7 +26,7 @@ export const RegistrarPlantaciones = async (req, res) => {
         console.error(error);
         return res.status(500).json({ message: "Error al registrar la plantación" });
     }
-};
+}
 
 export const ActualizarPlantaciones = async (req, res) => {
     try {
@@ -76,14 +76,26 @@ export const ListarPlantacionesPorEraYCultivo = async (req, res) => {
 export const ListarPlantacionesPorEra = async (req, res) => {
     try {
         const {fk_Eras} = req.params
-        const sql = `SELECT * FROM plantaciones WHERE fk_Eras=?`
+
+        const sql = `SELECT * FROM plantaciones WHERE fk_Eras = ?`
         const [result] = await pool.query(sql, [fk_Eras])
-        return res.status(200).json(result);
+
+        if (result.length > 0) {
+            return res.status(200).json({
+                message: "🌱 Plantaciones encontradas",
+                total: result.length,
+                datos: result
+            });
+        } else {
+            return res.status(404).json({ message: "No hay plantaciones registradas en esta era" })
+        }
+
     } catch (error) {
-        console.error(error);
-        return res.status(500).json({ "message": "Error al listar las plantaciones por era" });
+        console.error("Error al listar las plantaciones por era:", error);
+        return res.status(500).json({ message: "Error al listar las plantaciones por era" })
     }
 }
+
 export const ListarPlantacionesPorCultivo = async (req, res) => {
     try {
         const {fk_Cultivos} = req.params
@@ -104,39 +116,5 @@ export const ListarPlantacionesPorCultivoYEra = async (req, res) => {
     } catch (error) {
         console.error(error);
         return res.status(500).json({ "message": "Error al listar las plantaciones por cultivo y era" });
-    }
-}
-//reportes
- export const ReportePlantacionesPorEra = async (req, res) => {
-    try {
-        const {fk_Eras} = req.params
-        const sql = `SELECT COUNT(*) as cantidad, fk_Cultivos FROM plantaciones WHERE fk_Eras=? GROUP BY fk_Cultivos`
-        const [result] = await pool.query(sql, [fk_Eras])
-        return res.status(200).json(result);
-    } catch (error) {
-        console.error(error);
-        return res.status(500).json({ "message": "Error al generar el reporte de plantaciones por era" });
-    }
-}
-export const ReportePlantacionesPorCultivo = async (req, res) => {
-    try {
-        const {fk_Cultivos} = req.params
-        const sql = `SELECT COUNT(*) as cantidad, fk_Eras FROM plantaciones WHERE fk_Cultivos=? GROUP BY fk_Eras`
-        const [result] = await pool.query(sql, [fk_Cultivos])
-        return res.status(200).json(result);
-    } catch (error) {
-        console.error(error);
-        return res.status(500).json({ "message": "Error al generar el reporte de plantaciones por cultivo" });
-    }
-}
-export const ReportePlantacionesPorCultivoYEra = async (req, res) => {
-    try {
-        const {fk_Cultivos, fk_Eras} = req.params
-        const sql = `SELECT COUNT(*) as cantidad FROM plantaciones WHERE fk_Cultivos=? AND fk_Eras=?`
-        const [result] = await pool.query(sql, [fk_Cultivos, fk_Eras])
-        return res.status(200).json(result[0]);
-    } catch (error) {
-        console.error(error);
-        return res.status(500).json({ "message": "Error al generar el reporte de plantaciones por cultivo y era" });
     }
 }

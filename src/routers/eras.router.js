@@ -5,7 +5,7 @@ import { ListarEras,
         EliminarEras, 
         BuscarEras, 
         ReporteErasPorLote,
-        ReporteErasPorFecha  } from "../controllers/eras.controller.js"
+        } from "../controllers/eras.controller.js"
 import verifyJWT from '../middlewares/verifyJWT.middleware.js';
 
 const router = Router()
@@ -16,6 +16,5 @@ router.post("/eras",verifyJWT, RegistarEras)
 router.put("/eras/:id",verifyJWT, ActualizarEras)
 router.delete("/eras/:id",verifyJWT, EliminarEras)
 router.get("/eras/reporte/:id",verifyJWT, ReporteErasPorLote)
-router.get("/eras/reporte/fecha/:fecha",verifyJWT, ReporteErasPorFecha)
 
 export default router
