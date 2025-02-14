@@ -3,7 +3,7 @@ import { createActividad, getAllActividad, updateActividad } from "../controller
 import  verifyJWT  from "../middlewares/verifyJWT.middleware.js"
 
 const actividades = Router()
-actividades.get('/actividad',getAllActividad)
+actividades.get('/actividad',verifyJWT,getAllActividad)
 actividades.post('/actividad',verifyJWT,createActividad)
 actividades.put('/actividad/:id',verifyJWT,updateActividad)
 

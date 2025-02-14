@@ -3,7 +3,7 @@ import { createHerramientas, getAllHerramientas, updateHerramientas } from "../c
 import verifyJWT from "../middlewares/verifyJWT.middleware.js";
 
 const herramientas = Router()
-herramientas.get('/herramientas',getAllHerramientas)
+herramientas.get('/herramientas',verifyJWT,getAllHerramientas)
 herramientas.post('/herramientas',verifyJWT,createHerramientas)
 herramientas.put('/herramientas/:id',verifyJWT,updateHerramientas)
 

@@ -3,7 +3,7 @@ import { createInsumo, getAllInsumos, updateInsumos } from "../controllers/insum
 import verifyJWT from "../middlewares/verifyJWT.middleware.js";
 
 const insumos = Router()
-insumos.get("/insumos",getAllInsumos)
+insumos.get("/insumos",verifyJWT,getAllInsumos)
 insumos.post("/insumos",verifyJWT,createInsumo)
 insumos.put("/insumos/:id",verifyJWT,updateInsumos)
 

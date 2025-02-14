@@ -4,7 +4,7 @@ import verifyJWT from '../middlewares/verifyJWT.middleware.js';
 
 const usosHerramientas = Router();
 
-usosHerramientas.get('/usosHerramientas',getAllUsosHerramientas);
+usosHerramientas.get('/usosHerramientas',verifyJWT,getAllUsosHerramientas);
 usosHerramientas.post('/usosHerramientas',verifyJWT,createUsosHerramientas);
 
 export default usosHerramientas;
