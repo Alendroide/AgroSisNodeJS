@@ -21,7 +21,7 @@ export const getAllEspecies = async (req,res) => {
 export const createEspecies = async (req,res) => {
     try{
         const {nombre,descripcion,img,tiempoCrecimiento,fk_TiposEspecie}=req.body
-        const sql = "INSERT INTO especies (nombre,descripcion,img,tiempoCrecimiento,fk_TiposEspecie) VALUES (?,?,?,?)"
+        const sql = "INSERT INTO especies (nombre,descripcion,img,tiempoCrecimiento,fk_TiposEspecie) VALUES (?,?,?,?,?)"
         const [rows] = await pool.query(sql,[nombre,descripcion,img,tiempoCrecimiento,fk_TiposEspecie])
         if (rows.affectedRows > 0){
             return res.status(200).json({msg : "La especie fue registrada exitosamente"})
