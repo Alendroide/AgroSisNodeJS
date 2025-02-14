@@ -47,6 +47,8 @@ import insumos from './src/routers/insumos.router.js';
 import usosHerramientas from './src/routers/usosHerramientas.router.js';
 import usosProductos from './src/routers/usosProductos.js';
 import actividades from './src/routers/actividades.router.js';
+import humedadAmbiental from "./src/routers/humedadAmbiental.router.js";
+
 
 app.use(docs);
 app.use(usosHerramientas);
@@ -81,6 +83,7 @@ app.use(rutaTiposControl);
 app.use(rutaControles);
 app.use(rutaProductosControl);
 app.use(rutaUsoProductoControl);
+app.use(humedadAmbiental);
 
 //404
 app.use((req, res) => {
