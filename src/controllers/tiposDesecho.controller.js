@@ -8,7 +8,7 @@ export const getAllTiposDesecho = async (req,res) => {
             return res.status(200).json(rows)
         }
         else{
-            return res.status(402).json({msg : "No se encontraron tipos de desechos registrados."})
+            return res.status(404).json({msg : "No se encontraron tipos de desechos registrados."})
         }
     }
     catch(error){
