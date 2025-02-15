@@ -10,7 +10,7 @@ export const createVelocidadViento = async (req,res) => {
         } 
     
         else{
-            return res.status(402).json({msg : "Error al recolectar los datos de las Velocidad del viento"})
+            return res.status(400).json({msg : "Error al recolectar los datos de las Velocidad del viento"})
         }
 
     }
@@ -28,7 +28,7 @@ export const getAllVelocidadViento = async (req,res) => {
             return res.status(200).json({rows})
         }
         else{
-            return res.status(400).json({msg : "No se encontro una velocidad del viento registrada en la base de datos"})
+            return res.status(404).json({msg : "No se encontro una velocidad del viento registrada en la base de datos"})
         }
     }
     catch(error){
