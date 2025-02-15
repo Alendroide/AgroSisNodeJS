@@ -5,12 +5,13 @@ import {
   listarControles,
   registrarControles,
 } from "../controllers/controles.controller.js";
+import verifyJWT from '../middlewares/verifyJWT.middleware.js';
 
 const rutaControles = Router();
 
-rutaControles.get("/controles", listarControles);
-rutaControles.post("/controles", registrarControles);
-rutaControles.put("/controles/:id", actualizarControles);
-rutaControles.delete("/controles/:id", eliminarControles);
+rutaControles.get("/controles",verifyJWT, listarControles);
+rutaControles.post("/controles", verifyJWT,registrarControles);
+rutaControles.put("/controles/:id",verifyJWT, actualizarControles);
+rutaControles.delete("/controles/:id",verifyJWT, eliminarControles);
 
 export default rutaControles;

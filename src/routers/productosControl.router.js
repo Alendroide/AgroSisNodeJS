@@ -6,13 +6,15 @@ import {
   listarProductosControl,
   registrarProductosControl,
 } from "../controllers/productosControl.controller.js";
+import verifyJWT from '../middlewares/verifyJWT.middleware.js';
+
 
 const rutaProductosControl = Router();
 
-rutaProductosControl.get("/productosControl", listarProductosControl);
-rutaProductosControl.post("/productosControl", registrarProductosControl);
-rutaProductosControl.put("/productosControl/:id", actualizarProductosControl);
-rutaProductosControl.delete("/productosControl/:id", eliminarProductosControl);
-rutaProductosControl.get("/productosControl/:id", buscarProductosControl);
+rutaProductosControl.get("/productosControl",verifyJWT, listarProductosControl);
+rutaProductosControl.post("/productosControl",verifyJWT, registrarProductosControl);
+rutaProductosControl.put("/productosControl/:id",verifyJWT, actualizarProductosControl);
+rutaProductosControl.delete("/productosControl/:id", verifyJWT,eliminarProductosControl);
+rutaProductosControl.get("/productosControl/:id",verifyJWT, buscarProductosControl);
 
 export default rutaProductosControl;
